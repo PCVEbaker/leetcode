@@ -5,6 +5,8 @@
 // The valid robot moves are R (Right), L (Left), U (Up) and D (down).
 // The output should be true or false representing whether the robot makes a circle.
 
+
+
 const judgeRouteCircle(moves) {
   let x = 0;
   let y = 0;
@@ -18,3 +20,5 @@ const judgeRouteCircle(moves) {
 
   return (x === 0 && y === 0)
 }
+
+// Time complexity O(n)
