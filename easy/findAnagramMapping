@@ -1,0 +1,31 @@
+/* Given two lists Aand B, and B is an anagram of A. B is an anagram of A means B is made by randomizing the order of the elements in A.
+
+We want to find an index mapping P, from A to B. A mapping P[i] = j means the ith element in A appears in B at index j.
+
+These lists A and B may contain duplicates. If there are multiple answers, output any of them. */
+
+// Naive Solution
+// O(n^2)
+
+const anagramMappings = function(A, B) {
+  return A.reduce((acc, curr) => acc.concat([B.indexOf(curr)]), []);
+};
+
+// Optomized Approach
+// O(n)
+const anagramMappings = function(A, B) {
+  let hash = {};
+  let result = [];
+  B.forEach((value, index) => (hash[value] = index));
+  A.forEach(value => result.push(hash[value]));
+  return result;
+};
+
+// Approach using map
+// O(n)
+
+const anagramMappings = function(A, B) {
+  const map = new Map();
+  B.forEach((value, index) => map.set(value, index));
+  return A.map(value => map.get(value));
+};
