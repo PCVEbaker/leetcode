@@ -1,0 +1,67 @@
+// Given a binary tree, return the preorder traversal of its nodes' values.
+
+// For example:
+// Given binary tree [1,null,2,3],
+
+//    1
+//     \
+//      2
+//     /
+//    3
+
+// return [1,2,3].
+
+// Note: Recursive solution is trivial, could you do it iteratively?
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+
+// recursive solution
+
+function preOrderTraversal(root) {
+  let result = [root.val];
+
+  if (root.left) {
+    result = result.concat(preOrderTraversal(root.left));
+  }
+
+  if (root.right) {
+    result = result.concat(preOrderTraversal(root.right));
+  }
+
+  return result;
+}
+
+// iterative solution
+
+function preOrderTraversal(root) {
+  let result = [];
+  let stack = [];
+
+  while (root) {
+    result.push(root.val);
+
+    if (root.right) {
+      stack.push(root.right);
+    }
+
+    if (root.left) {
+      root = root.left;
+    } else if (stack.length > 0) {
+      root = stack.pop();
+    } else {
+      root = undefined;
+    }
+  }
+  return result;
+}
