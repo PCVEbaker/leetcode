@@ -1,0 +1,35 @@
+// Iterative Approach to in order traversal of a
+// binary tree
+
+// time complexity: 0(n)
+// space complexity: 0(n)
+
+function inOrderTraversal(root) {
+  let results = [];
+  let stack = [];
+
+  while (stack.length > 0 || root) {
+    if (root) {
+      stack.push(root);
+      root = root.left;
+    } else {
+      root = stack.pop();
+      results.push(root.val);
+      root = root.right;
+    }
+  }
+}
+
+// Recursive approach to in order traversal of a
+// binary tree
+
+function inOrderTraversal(root) {
+  let results = [];
+
+  if (!root) return;
+  inOrderTraversal(root.left);
+  results.push(root.val);
+  inOrderTraversal(root.right);
+
+  return results;
+}
