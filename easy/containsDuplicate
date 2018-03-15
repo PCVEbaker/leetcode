@@ -1,0 +1,26 @@
+// Given an array of integers, find if the array contains any duplicates.
+// Your function should return true if any value appears at least twice in
+// the array, and it should return false if every element is distinct.
+
+const containsDuplicate = function(nums) {
+  let storage = {};
+
+  nums.forEach(num => {
+    if (storage[num]) {
+      storage[num]++;
+    } else {
+      storage[num] = 1;
+    }
+  });
+
+  for (let num in storage) {
+    if (storage[num] > 1) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+// Time Complexity: O(N)
+// Space Complexity: O(N)
