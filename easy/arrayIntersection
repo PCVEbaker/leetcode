@@ -1,0 +1,49 @@
+//  Given two arrays, write a function to compute their intersection.
+
+// Example:
+// Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2, 2].
+
+// Note:
+
+//     Each element in the result should appear as many times as it shows in both arrays.
+//     The result can be in any order.
+
+// Follow up:
+
+//     What if the given array is already sorted? How would you optimize your algorithm?
+//     What if nums1's size is small compared to nums2's size? Which algorithm is better?
+//     What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
+
+const arrayIntersection = function(arr1, arr2) {
+  let storage1 = arrayToObject(arr1);
+  let storage2 = arrayToObject(arr2);
+  let results = [];
+
+  for (let num in storage1) {
+    if (storage2[num]) {
+      if (storage1[num] > storage2[num]) {
+        for (let i = 0; i < storage2[num]; i++) {
+          results.push(Number(num));
+        }
+      } else {
+        for (let i = 0; i < storage1[num]; i++) {
+          results.push(Number(num));
+        }
+      }
+    }
+  }
+
+  return results;
+};
+
+const arrayToObject = function(arr) {
+  let storage = {};
+  for (let i = 0; i < arr.length; i++) {
+    if (storage[arr[i]]) {
+      storage[arr[i]]++;
+    } else {
+      storage[arr[i]] = 1;
+    }
+  }
+  return storage;
+};
